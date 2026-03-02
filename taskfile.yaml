@@ -1,0 +1,51 @@
+version: "3"
+
+vars:
+    UI_DIR: frontend
+    DOTNET_DIR: desktop
+
+tasks:
+    # 1. TAREA DE DESARROLLO (WATCH)
+    dev:
+        desc: Ejecuta React y .NET en modo desarrollo
+        deps: [install-deps]
+        cmds:
+            - task: dev-parallel
+
+    dev-parallel:
+        internal: true
+        deps:
+            - dev-ui
+            - dev-dotnet
+
+    dev-ui:
+        dir: "{{.UI_DIR}}"
+        cmds:
+            - npm run dev
+        interactive: true
+
+    dev-dotnet:
+        dir: "{{.DOTNET_DIR}}"
+        cmds:
+            - dotnet watch run
+        interactive: true
+
+    # 2. TAREA DE CONSTRUCCIÓN (BUILD)
+    build:
+        desc: Prepara la UI y compila el binario final
+        cmds:
+            - echo "Generando build de React..."
+            - cd {{.UI_DIR}} && npm run build
+            - echo "Compilando .NET..."
+            - cd {{.DOTNET_DIR}} && dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -o ../release
+            - echo "¡Listo! El ejecutable está en la carpeta /release"
+
+    install-deps:
+        internal: true
+        dir: "{{.UI_DIR}}"
+        cmds:
+            - npm install
+        sources:
+            - package.json
+        generates:
+            - node_modules/**/*
