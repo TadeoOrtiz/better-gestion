@@ -6,11 +6,13 @@ import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
     <BrowserRouter>
-        <Navbar />
-        <div className="p-10 bg-slate-900 min-h-screen text-white">
-            <Routes>
-                <Route path="/" element={<App />} />
-            </Routes>
+        <div className="flex flex-col h-screen overflow-hidden bg-slate-900 text-white">
+            <Navbar />
+            <main className="flex-1 overflow-hidden">
+                <Routes>
+                    <Route path="/" element={<App />} />
+                </Routes>
+            </main>
         </div>
     </BrowserRouter>,
 );

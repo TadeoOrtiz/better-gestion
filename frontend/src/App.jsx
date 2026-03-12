@@ -1,20 +1,18 @@
 import ConfigPanel from "./components/ConfigPanel";
-import { useState } from "react";
+import FlowContent from "./components/Flow/Flow";
+import { FlowProvider } from "./components/Flow/FlowProvider";
 
 function App() {
-    const [data, setData] = useState({});
-
-    const dataReceived = (m) => {
-        const data = JSON.parse(m);
-        setData(data);
-    };
-
-    return (
-        <div className="flex">
-            <ConfigPanel onDataReceived={dataReceived} />
-            <div className="h-10 w-10 bg-amber-200">{data.nombre}</div>
+  return (
+    <FlowProvider>
+      <div className="flex h-full overflow-hidden">
+        <div className="flex-1 overflow-hidden">
+          <FlowContent />
         </div>
-    );
+        <ConfigPanel />
+      </div>
+    </FlowProvider>
+  );
 }
 
 export default App;
