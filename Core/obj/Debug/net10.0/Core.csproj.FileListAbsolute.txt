@@ -1,0 +1,16 @@
+/home/tadeo/dev/better-gestion/Core/bin/Debug/net10.0/Core.deps.json
+/home/tadeo/dev/better-gestion/Core/bin/Debug/net10.0/Core.dll
+/home/tadeo/dev/better-gestion/Core/bin/Debug/net10.0/Core.pdb
+/home/tadeo/dev/better-gestion/Core/bin/Debug/net10.0/Extension.dll
+/home/tadeo/dev/better-gestion/Core/bin/Debug/net10.0/Extension.pdb
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/Core.csproj.AssemblyReference.cache
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/Core.GeneratedMSBuildEditorConfig.editorconfig
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/Core.AssemblyInfoInputs.cache
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/Core.AssemblyInfo.cs
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/Core.csproj.CoreCompileInputs.cache
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/Core.sourcelink.json
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/Core.csproj.Up2Date
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/Core.dll
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/refint/Core.dll
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/Core.pdb
+/home/tadeo/dev/better-gestion/Core/obj/Debug/net10.0/ref/Core.dll

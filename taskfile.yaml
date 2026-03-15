@@ -1,8 +1,8 @@
 version: "3"
 
 vars:
-  UI_DIR: frontend
-  DOTNET_DIR: desktop
+  UI_DIR: Frontend
+  DOTNET_DIR: Desktop
 
 tasks:
   # 1. TAREA DE DESARROLLO (WATCH)

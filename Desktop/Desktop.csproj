@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="..\frontend\dist\**\*.*">
+    <Content Include="..\Frontend\dist\**\*.*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Link>wwwroot\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Content>
@@ -17,6 +17,8 @@
 
   <ItemGroup>
     <PackageReference Include="Photino.NET" Version="4.0.16" />
+    <ProjectReference Include="..\Core\Core.csproj" />
+    <ProjectReference Include="..\Extension\Extension.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using Photino.NET;
 using System.Text.Json;
 
-namespace desktop;
+namespace Desktop;
 
 public record FolderItem(string Id, string Name, string Path, string HexColor);
 
