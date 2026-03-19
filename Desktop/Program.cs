@@ -21,7 +21,7 @@ class Program
     {
         var window = new PhotinoWindow()
             .SetTitle("GestionApp")
-            .SetSize(1000, 600)
+            .SetMaximized(true)
 
             .Center();
 

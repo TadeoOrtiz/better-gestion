@@ -1,14 +1,20 @@
-import { useCourseStore } from "../store/useCourseStore";
+import { useEffect, useState } from "react";
+import { useCourseStore, useStore } from "../store/useCourseStore";
+import { sendToBackend } from "../lib/photinoEvents";
 
 export default function DataPage() {
-  const sendEvent = useCourseStore((state) => state.sendEvent);
+  const courses = useCourseStore((state) => state.courses);
+  const addCourse = useCourseStore((state) => state.addCourse);
+
+  const count = useStore((state) => state.count);
+  const incrementInDb = useStore((state) => state.incrementInDb);
 
   const handleClick = () => {
-    sendEvent("Test", {
-        timestamp: Date.now(),
-        admin: "JASDKLASJD",
-        soy: "El monte everest no tiene nada en contra de mi"
-    });
+    incrementInDb();
+  };
+
+  const handleClick2 = () => {
+    addCourse();
   };
 
   return (
@@ -16,6 +22,14 @@ export default function DataPage() {
       <button onClick={handleClick} className="hover:bg-amber-50">
         asdjlkasd
       </button>
+      <br></br>
+      {count}
+      <br></br>
+      <button onClick={handleClick2} className="hover:bg-amber-50">
+        ss
+      </button>
+      <br></br>
+      {courses}
     </div>
   );
 }

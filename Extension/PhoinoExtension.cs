@@ -4,11 +4,6 @@ using System.Text.Json;
 
 namespace Extension;
 
-public class PhotinoMessage
-{
-    public string Event { get; set; }
-    public object Payload { get; set; } // 'object' permite cualquier JSON interno
-}
 
 public static class PhotinoExtension
 {
@@ -18,19 +13,50 @@ public static class PhotinoExtension
     {
         window.RegisterWebMessageReceivedHandler((object? sender, string message) =>
         {
+
+
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
 
+            Console.WriteLine(message);
+
             // Deserializamos el string JSON al objeto C#
-            var received = JsonSerializer.Deserialize<PhotinoMessage>(message, options);
+            var received = JsonSerializer.Deserialize<PhotinoMessage>(message, options) ?? throw new Exception("Meesage is null");
+            string eventName = received.eventName;
 
-            
-            string eventName = received.Event;
+            Handler.window = window;
+            Type type = Handler.GetType();
 
-            if (Handler.MessageName == eventName)
+            var methods = type.GetMethods();
+
+            foreach (var method in methods)
             {
-                var payloadJson = received.Payload.ToString();
-                var payloadDict = JsonSerializer.Deserialize<Dictionary<string, object>>(payloadJson);
-                Handler.Handle(payloadDict);
+                // Buscamos si el método tiene tu atributo
+                var atrr = (EventNameAttribute)Attribute.GetCustomAttribute(method, typeof(EventNameAttribute));
+
+                if (atrr != null)
+                {
+                    if (atrr.EventName == eventName)
+                    {
+
+                        Type tipoDestino = atrr.TypeModel;
+
+                        if (string.IsNullOrEmpty(received.payload.ToString()) || tipoDestino == null)
+                            method.Invoke(Handler, null);
+
+                        else
+                        {
+
+                            // 2. Serializamos los datos crudos a ese tipo específico
+                            // Ejemplo usando System.Text.Json o Newtonsoft.Json:
+                            var payloadJson = received.payload.ToString() ?? throw new Exception("payload is null");
+                            var payloadDict = JsonSerializer.Deserialize(payloadJson, tipoDestino) ?? throw new Exception("payload can't deserialize");
+
+
+
+                            method.Invoke(Handler, [payloadDict]);
+                        }
+                    }
+                }
             }
 
         });
